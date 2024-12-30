@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('deliveries', function (Blueprint $table) {
             $table->id();
-           $table->string('name');
-           $table->string('address');
-           $table->string('phone');
-           $table->string('price');
+            $table->string('name');
+            $table->string('address');
+            $table->string('price');
             $table->timestamps();
         });
     }

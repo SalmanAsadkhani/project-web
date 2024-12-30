@@ -4,27 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Models\Driver;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
 class DriverController extends Controller
 {
 
     public function login(Request $request)
     {
-        $login  = Driver::where('email' , $request->email)->where('password' , $request->password)->get()->first();
+
+        $login = Driver::where('email' , $request->email)
+            ->where('password' , $request->password)->first();
+
+
+
 
         if ($login) {
 
+            $token = $login->createToken('login');
 
+            return response()->json([
+                'message' => 'Login Successful',
+                'token' => $token->plainTextToken,
+            ]);
 
-            $token = $login->createToken('token');
-            return response()->json(
-                [
-                    'message' => 'login success',
-                    'token' => $token->plainTextToken
-                ]
-            );
+        }
 
+        else {
+            return response()->json([
+                'message' => 'Login Failed',
+            ]);
         }
 
     }

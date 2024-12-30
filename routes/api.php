@@ -18,6 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', [\App\Http\Controllers\DriverController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('deliveries' , [\App\Http\Controllers\DeliveryController::class, 'index']);
+    Route::post('deliveries' , [\App\Http\Controllers\DeliveryController::class, 'index']);
     Route::post('deliveries/verify'  , [\App\Http\Controllers\DeliveryController::class, 'verify']);
 });
